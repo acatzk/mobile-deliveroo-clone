@@ -1,12 +1,17 @@
-import { Text, View } from 'react-native'
-import { StatusBar } from 'expo-status-bar'
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+
+import HomeScreen from './screens/HomeScreen'
+
+const Stack = createNativeStackNavigator()
 
 const App = () => {
   return (
-    <View className="flex h-screen flex-1 items-center justify-center text-black">
-      <Text className="text-black">Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   )
 }
 
