@@ -1,3 +1,5 @@
+import React from 'react'
+import { withExpoSnack } from 'nativewind'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
@@ -15,4 +17,4 @@ const App = (): JSX.Element => {
   )
 }
 
-export default App
+export default withExpoSnack(App)
