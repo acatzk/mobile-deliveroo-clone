@@ -1,7 +1,11 @@
+import { Image } from 'react-native'
+import { withExpoSnack } from 'nativewind'
 import React, { useLayoutEffect } from 'react'
-import { Text, View, Image } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { ChevronDownIcon, UserIcon } from 'react-native-heroicons/outline'
+
+import { StyledText, StyledView } from './../utils/nativewind'
 
 const HomeScreen = (): JSX.Element => {
   const navigation = useNavigation()
@@ -13,24 +17,31 @@ const HomeScreen = (): JSX.Element => {
   }, [])
 
   return (
-    <SafeAreaView>
-      <Text className="text-red-500">
+    <SafeAreaView className="bg-white pt-5">
+      <StyledText className="px-4">
         {/* Header */}
-        <View className="flex-row items-center space-x-2 pb-2">
+        <StyledView className="flex flex-row items-center space-x-2 pb-3">
           <Image
             source={{
               uri: 'https://links.papareact.com/wru'
             }}
-            className="h-7 w-7 rounded-full bg-gray-200 p-4"
+            className="h-7 w-7 shrink-0 rounded-full bg-gray-200 p-4"
           />
-          <View>
-            <Text className="text-xs font-bold text-gray-400">Deliver Now</Text>
-            <Text className="text-xl font-bold">Current Location</Text>
-          </View>
-        </View>
-      </Text>
+
+          <StyledView className="flex-1">
+            <StyledText className="text-xs font-bold text-gray-400">Deliver Now</StyledText>
+            <StyledText className="text-xl font-bold">
+              Current Location <ChevronDownIcon size={20} color="#00CCBB" />
+            </StyledText>
+          </StyledView>
+
+          <UserIcon size={30} color="#00CCBB" />
+        </StyledView>
+
+        {/* Search */}
+      </StyledText>
     </SafeAreaView>
   )
 }
 
-export default HomeScreen
+export default withExpoSnack(HomeScreen)
