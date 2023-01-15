@@ -22,6 +22,3 @@ jobs:
 
       - name: 📦 Install dependencies
         run: npm install
-
-      - name: 🚀 Build app
-        run: expo build:android
