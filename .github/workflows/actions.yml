@@ -1,5 +1,5 @@
 on:
-  push:
+  pull_request:
     branches:
       - develop
 jobs:
@@ -24,4 +24,4 @@ jobs:
         run: npm install
 
       - name: 🚀 Build app
-        run: eas build --non-interactive
+        run: expo build:android

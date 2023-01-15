@@ -7,3 +7,8 @@ node_modules
 
 \*.tsbuildinfo
 next-env.d.ts
+app.d.ts
+.expo
+.vscode
+babel.config.json
+dist
