@@ -10,8 +10,9 @@ import {
   AdjustmentsVerticalIcon
 } from 'react-native-heroicons/outline'
 
+import { Text, View } from '@src/utils/nativewind'
 import Categories from '@src/components/molecules/Categories'
-import { StyledText, StyledView } from '@src/utils/nativewind'
+import FeaturedRow from '@src/components/molecules/FeaturedRow'
 
 const HomeScreen = (): JSX.Element => {
   const navigation = useNavigation()
@@ -25,7 +26,7 @@ const HomeScreen = (): JSX.Element => {
   return (
     <SafeAreaView className="bg-white pt-5">
       {/* Header */}
-      <StyledView className="flex flex-row items-center space-x-2 px-4 pb-3">
+      <View className="flex flex-row items-center space-x-2 px-4 pb-3">
         <Image
           source={{
             uri: 'https://links.papareact.com/wru'
@@ -33,27 +34,27 @@ const HomeScreen = (): JSX.Element => {
           className="h-7 w-7 shrink-0 rounded-full bg-gray-200 p-4"
         />
 
-        <StyledView className="flex-1">
-          <StyledText className="text-xs font-bold text-gray-400">Deliver Now</StyledText>
-          <StyledText className="text-xl font-bold">
+        <View className="flex-1">
+          <Text className="text-xs font-bold text-gray-400">Deliver Now</Text>
+          <Text className="text-xl font-bold">
             Current Location <ChevronDownIcon size={20} color="#00CCBB" />
-          </StyledText>
-        </StyledView>
+          </Text>
+        </View>
 
         <UserIcon size={30} color="#00CCBB" />
-      </StyledView>
+      </View>
 
       {/* Search */}
-      <StyledView className="flex-row items-center space-x-2 px-4 pb-2">
-        <StyledView className="flex-1">
-          <StyledView className="flex-row items-center space-x-2 bg-gray-200 p-3">
+      <View className="flex-row items-center space-x-2 px-4 pb-2">
+        <View className="flex-1">
+          <View className="flex-row items-center space-x-2 bg-gray-200 p-3">
             <MagnifyingGlassIcon color="#00CCBB" size={20} />
             <TextInput placeholder="Restaurants and cuisines" keyboardType="default" />
-          </StyledView>
-        </StyledView>
+          </View>
+        </View>
 
         <AdjustmentsVerticalIcon color="#00CCBB" />
-      </StyledView>
+      </View>
 
       {/* Body */}
       <ScrollView className="bg-gray-100">
@@ -61,6 +62,27 @@ const HomeScreen = (): JSX.Element => {
         <Categories />
 
         {/* Featured Rows */}
+        <FeaturedRow
+          {...{
+            id: 1,
+            title: 'Featured',
+            description: 'Paid placements from our partners'
+          }}
+        />
+        <FeaturedRow
+          {...{
+            id: 2,
+            title: 'Tasty Discount',
+            description: "Everyone's been enjoying these juicy discount!"
+          }}
+        />
+        <FeaturedRow
+          {...{
+            id: 3,
+            title: 'Offers near you!',
+            description: 'Why not support your local restaurant tonight!'
+          }}
+        />
       </ScrollView>
     </SafeAreaView>
   )
