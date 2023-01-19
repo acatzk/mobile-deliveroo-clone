@@ -1,7 +1,7 @@
 import { styled } from 'nativewind'
-import { View, Text } from 'react-native'
+import { View as ViewNative, Text as TextNative } from 'react-native'
 
-const StyledView = styled(View)
-const StyledText = styled(Text)
+const View = styled(ViewNative)
+const Text = styled(TextNative)
 
-export { StyledText, StyledView }
+export { Text, View }
