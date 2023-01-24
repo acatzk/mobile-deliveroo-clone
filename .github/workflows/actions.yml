@@ -6,22 +6,10 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - name: 🏗 Setup repo
-        uses: actions/checkout@v3
-
-      - name: 🏗 Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16.x
-          cache: npm
-
       - name: 🏗 Setup Expo
         uses: expo/expo-github-action@v7
         with:
           expo-version: latest
 
-      - name: 📦 Install dependencies
-        run: npm install
-
       - name: Run ESLint and Prettier
-        run: npm run check-format && npm run check-lint
+        run: cd client && npm run check-format && npm run check-lint
