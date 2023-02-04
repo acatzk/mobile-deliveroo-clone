@@ -1,10 +1,12 @@
 import React, { FC } from 'react'
 import { Image, TouchableOpacity } from 'react-native'
 
+import { urlFor } from '@src/lib/sanity'
 import { Text } from '@src/utils/nativewind'
+import { IImage } from '@src/shared/interfaces'
 
 type Props = {
-  imgUrl: string
+  imgUrl: IImage
   title: string
 }
 
@@ -13,7 +15,7 @@ const Category: FC<Props> = ({ imgUrl, title }): JSX.Element => {
     <TouchableOpacity className="relative mr-2">
       <Image
         source={{
-          uri: imgUrl
+          uri: urlFor(imgUrl).url()
         }}
         className="h-20 w-20 rounded"
       />

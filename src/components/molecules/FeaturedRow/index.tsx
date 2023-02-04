@@ -4,14 +4,16 @@ import { ArrowRightIcon } from 'react-native-heroicons/outline'
 
 import RestaurantCard from './../RestaurantCard'
 import { Text, View } from '@src/utils/nativewind'
+import useRestaurant from '@src/hooks/useRestaurant'
 
 type Props = {
+  id: string
   title: string
   description: string
 }
 
-const FeaturedRow: FC<Props> = (props): JSX.Element => {
-  const { title, description } = props
+const FeaturedRow: FC<Props> = ({ id, title, description }): JSX.Element => {
+  const { data } = useRestaurant(id)
 
   return (
     <View>
@@ -31,48 +33,23 @@ const FeaturedRow: FC<Props> = (props): JSX.Element => {
         className="pt-4"
       >
         {/* Restaurant Cards */}
-        <RestaurantCard
-          {...{
-            id: 1,
-            imgUrl: 'https://links.papareact.com/gn7',
-            title: 'Yo! Sushi',
-            rating: 4.5,
-            genre: 'Japanese',
-            address: '123 Main st.',
-            short_description: 'This is a test description',
-            dishes: [],
-            long: 20,
-            lat: 0
-          }}
-        />
-        <RestaurantCard
-          {...{
-            id: 2,
-            imgUrl: 'https://links.papareact.com/gn7',
-            title: 'Yo! Sushi',
-            rating: 4.5,
-            genre: 'Japanese',
-            address: '123 Main st.',
-            short_description: 'This is a test description',
-            dishes: [],
-            long: 20,
-            lat: 0
-          }}
-        />
-        <RestaurantCard
-          {...{
-            id: 3,
-            imgUrl: 'https://links.papareact.com/gn7',
-            title: 'Yo! Sushi',
-            rating: 4.5,
-            genre: 'Japanese',
-            address: '123 Main st.',
-            short_description: 'This is a test description',
-            dishes: [],
-            long: 20,
-            lat: 0
-          }}
-        />
+        {data?.map((restaurant) => (
+          <RestaurantCard
+            key={restaurant._id}
+            {...{
+              id: restaurant._id,
+              imgUrl: restaurant.image,
+              address: restaurant.address,
+              title: restaurant.name,
+              dishes: restaurant.dishes,
+              rating: restaurant.rating,
+              short_description: restaurant.short_description,
+              genre: restaurant.type?.name,
+              long: restaurant.long,
+              lat: restaurant.lat
+            }}
+          />
+        ))}
       </ScrollView>
     </View>
   )

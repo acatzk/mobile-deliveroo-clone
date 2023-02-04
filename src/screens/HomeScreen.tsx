@@ -13,9 +13,11 @@ import {
 import { Text, View } from '@src/utils/nativewind'
 import Categories from '@src/components/molecules/Categories'
 import FeaturedRow from '@src/components/molecules/FeaturedRow'
+import useFetchFeaturedCategory from '@src/hooks/useFeaturedCategory'
 
 const HomeScreen = (): JSX.Element => {
   const navigation = useNavigation()
+  const { data } = useFetchFeaturedCategory()
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -62,27 +64,16 @@ const HomeScreen = (): JSX.Element => {
         <Categories />
 
         {/* Featured Rows */}
-        <FeaturedRow
-          {...{
-            id: 1,
-            title: 'Featured',
-            description: 'Paid placements from our partners'
-          }}
-        />
-        <FeaturedRow
-          {...{
-            id: 2,
-            title: 'Tasty Discount',
-            description: "Everyone's been enjoying these juicy discount!"
-          }}
-        />
-        <FeaturedRow
-          {...{
-            id: 3,
-            title: 'Offers near you!',
-            description: 'Why not support your local restaurant tonight!'
-          }}
-        />
+        {data?.map((category) => (
+          <FeaturedRow
+            key={category._id}
+            {...{
+              id: category._id,
+              title: category.name,
+              description: category.short_description
+            }}
+          />
+        ))}
       </ScrollView>
     </SafeAreaView>
   )

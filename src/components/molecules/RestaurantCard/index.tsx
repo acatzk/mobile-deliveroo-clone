@@ -3,17 +3,19 @@ import { TouchableOpacity, Image } from 'react-native'
 import { StarIcon } from 'react-native-heroicons/solid'
 import { MapPinIcon } from 'react-native-heroicons/outline'
 
+import { urlFor } from '@src/lib/sanity'
 import { View, Text } from '@src/utils/nativewind'
+import { IDish, IImage } from '@src/shared/interfaces'
 
 type Props = {
-  id: number
-  imgUrl: string
-  title: string
-  rating: number
-  genre: string
+  id: string
+  imgUrl: IImage
   address: string
+  title: string
+  dishes: IDish[]
+  rating: number
   short_description: string
-  dishes: string[]
+  genre: string
   long: number
   lat: number
 }
@@ -22,15 +24,15 @@ const RestaurantCard: FC<Props> = (props): JSX.Element => {
   const { imgUrl, title, rating, genre, address } = props
 
   return (
-    <TouchableOpacity className="mr-3 bg-white shadow">
+    <TouchableOpacity className="mr-3 mb-2 overflow-hidden rounded-md bg-white shadow">
       <Image
         source={{
-          uri: imgUrl
+          uri: urlFor(imgUrl).url()
         }}
-        className="h-36 w-64 rounded-sm"
+        className="h-36 w-64"
       />
-      <View>
-        <Text className="pt-2 text-lg font-bold">{title}</Text>
+      <View className="space-y-2 px-3 py-1">
+        <Text className="text-lg font-bold">{title}</Text>
 
         <View className="flex-row items-center space-x-1">
           <StarIcon color="green" opacity={0.5} size={22} />

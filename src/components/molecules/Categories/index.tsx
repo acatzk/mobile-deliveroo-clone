@@ -2,10 +2,13 @@ import React, { FC } from 'react'
 import { ScrollView } from 'react-native'
 
 import Category from './Category'
+import useCategory from '@src/hooks/useCategory'
 
 type Props = {}
 
 const Categories: FC<Props> = (): JSX.Element => {
+  const { data } = useCategory()
+
   return (
     <ScrollView
       horizontal
@@ -16,54 +19,15 @@ const Categories: FC<Props> = (): JSX.Element => {
       className="w-full bg-gray-100"
       showsHorizontalScrollIndicator={false}
     >
-      <Category
-        {...{
-          imgUrl: 'https://links.papareact.com/gn7',
-          title: 'Test 1'
-        }}
-      />
-      <Category
-        {...{
-          imgUrl: 'https://links.papareact.com/gn7',
-          title: 'Test 2'
-        }}
-      />
-      <Category
-        {...{
-          imgUrl: 'https://links.papareact.com/gn7',
-          title: 'Test 3'
-        }}
-      />
-      <Category
-        {...{
-          imgUrl: 'https://links.papareact.com/gn7',
-          title: 'Test 4'
-        }}
-      />
-      <Category
-        {...{
-          imgUrl: 'https://links.papareact.com/gn7',
-          title: 'Test 5'
-        }}
-      />
-      <Category
-        {...{
-          imgUrl: 'https://links.papareact.com/gn7',
-          title: 'Test 6'
-        }}
-      />
-      <Category
-        {...{
-          imgUrl: 'https://links.papareact.com/gn7',
-          title: 'Test 7'
-        }}
-      />
-      <Category
-        {...{
-          imgUrl: 'https://links.papareact.com/gn7',
-          title: 'Test 3'
-        }}
-      />
+      {data?.map((category) => (
+        <Category
+          key={category._id}
+          {...{
+            imgUrl: category.image,
+            title: category.name
+          }}
+        />
+      ))}
     </ScrollView>
   )
 }
