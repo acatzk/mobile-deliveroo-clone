@@ -1,11 +1,14 @@
 import React, { FC } from 'react'
 import { TouchableOpacity, Image } from 'react-native'
 import { StarIcon } from 'react-native-heroicons/solid'
+import { useNavigation } from '@react-navigation/native'
 import { MapPinIcon } from 'react-native-heroicons/outline'
+import { StackNavigationProp } from '@react-navigation/stack'
 
 import { urlFor } from '@src/lib/sanity'
 import { View, Text } from '@src/utils/nativewind'
 import { IDish, IImage } from '@src/shared/interfaces'
+import { RootStackParamList } from '@src/shared/types'
 
 type Props = {
   id: string
@@ -21,10 +24,40 @@ type Props = {
 }
 
 const RestaurantCard: FC<Props> = (props): JSX.Element => {
-  const { imgUrl, title, rating, genre, address } = props
+  const {
+    id,
+    imgUrl,
+    address,
+    title,
+    dishes,
+    rating,
+    short_description: shortDescription,
+    genre,
+    long,
+    lat
+  } = props
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>()
+
+  const handleNavigateToRestaurant = (): void => {
+    navigation.navigate('Restaurant', {
+      id,
+      imgUrl,
+      address,
+      title,
+      dishes,
+      rating,
+      shortDescription,
+      genre,
+      long,
+      lat
+    })
+  }
 
   return (
-    <TouchableOpacity className="mr-3 mb-2 overflow-hidden rounded-md bg-white shadow">
+    <TouchableOpacity
+      className="mr-3 mb-2 overflow-hidden rounded-md bg-white shadow"
+      onPress={handleNavigateToRestaurant}
+    >
       <Image
         source={{
           uri: urlFor(imgUrl).url()

@@ -26,7 +26,7 @@ const HomeScreen = (): JSX.Element => {
   }, [])
 
   return (
-    <SafeAreaView className="bg-white pt-5">
+    <SafeAreaView className="mb-20 bg-white pt-5 pb-8">
       {/* Header */}
       <View className="flex flex-row items-center space-x-2 px-4 pb-3">
         <Image
