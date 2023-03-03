@@ -2,10 +2,12 @@ import { configureStore } from '@reduxjs/toolkit'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 
 import basketReducer from './basket/basketSlice'
+import restaurantReducer from './restaurant/restaurantSlice'
 
 export const store = configureStore({
   reducer: {
-    basket: basketReducer
+    basket: basketReducer,
+    restaurant: restaurantReducer
   }
 })
 

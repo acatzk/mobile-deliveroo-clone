@@ -1,6 +1,7 @@
-import { IDish, IImage } from '../interfaces'
+import { IDish, IImage } from './../interfaces'
 
 export type RootStackParamList = {
+  Home: undefined
   Restaurant: {
     id: string
     imgUrl: IImage
@@ -13,4 +14,5 @@ export type RootStackParamList = {
     long: number
     lat: number
   }
+  Basket: undefined
 }
