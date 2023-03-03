@@ -1,5 +1,5 @@
 import { withExpoSnack } from 'nativewind'
-import React, { useLayoutEffect } from 'react'
+import React, { FC, useLayoutEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { Image, ScrollView, TextInput } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -15,7 +15,9 @@ import Categories from '@src/components/molecules/Categories'
 import FeaturedRow from '@src/components/molecules/FeaturedRow'
 import useFetchFeaturedCategory from '@src/hooks/useFeaturedCategory'
 
-const HomeScreen = (): JSX.Element => {
+type Props = {}
+
+const HomeScreen: FC<Props> = (): JSX.Element => {
   const navigation = useNavigation()
   const { data } = useFetchFeaturedCategory()
 
@@ -26,7 +28,7 @@ const HomeScreen = (): JSX.Element => {
   }, [])
 
   return (
-    <SafeAreaView className="mb-20 bg-white pt-5 pb-8">
+    <SafeAreaView className="mb-20 bg-white pt-5">
       {/* Header */}
       <View className="flex flex-row items-center space-x-2 px-4 pb-3">
         <Image

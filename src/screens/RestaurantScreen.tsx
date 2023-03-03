@@ -1,4 +1,5 @@
-import React, { useLayoutEffect } from 'react'
+import { withExpoSnack } from 'nativewind'
+import React, { FC, useEffect, useLayoutEffect } from 'react'
 import { ScrollView, Image, TouchableOpacity } from 'react-native'
 import { useRoute, RouteProp, useNavigation } from '@react-navigation/native'
 import {
@@ -7,18 +8,41 @@ import {
   ArrowLeftIcon,
   QuestionMarkCircleIcon
 } from 'react-native-heroicons/outline'
+import { useDispatch } from 'react-redux'
 
 import { urlFor } from '@src/lib/sanity'
 import { Text, View } from '@src/utils/nativewind'
 import { RootStackParamList } from '@src/shared/types'
 import DishRow from '@src/components/molecules/DishRow'
 import BasketIcon from '@src/components/molecules/BasketIcon'
+import { StackNavigationProp } from '@react-navigation/stack'
+import { setRestaurant } from '@src/redux/restaurant/restaurantSlice'
 
-const RestaurantScreen = (): JSX.Element => {
-  const navigation = useNavigation()
+type Props = {}
+
+const RestaurantScreen: FC<Props> = (): JSX.Element => {
+  const dispatch = useDispatch()
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>()
   const {
-    params: { title, dishes, imgUrl, rating, genre, address, shortDescription }
-  } = useRoute<RouteProp<RootStackParamList>>()
+    params: { id, title, dishes, imgUrl, rating, genre, address, shortDescription, long, lat }
+  } = useRoute<RouteProp<Pick<RootStackParamList, 'Restaurant'>>>()
+
+  useEffect(() => {
+    dispatch(
+      setRestaurant({
+        id,
+        title,
+        dishes,
+        imgUrl,
+        rating,
+        genre,
+        address,
+        shortDescription,
+        long,
+        lat
+      })
+    )
+  }, [dispatch])
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -88,4 +112,4 @@ const RestaurantScreen = (): JSX.Element => {
   )
 }
 
-export default RestaurantScreen
+export default withExpoSnack(RestaurantScreen)

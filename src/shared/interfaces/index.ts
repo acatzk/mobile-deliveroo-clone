@@ -42,10 +42,12 @@ export interface IDish {
 
 export interface IImage {
   _type: string
-  asset: {
-    _ref: string
-    _type: string
-  }
+  asset: IAsset
+}
+
+export interface IAsset {
+  _ref: string
+  _type: string
 }
 
 export interface ICategory {
@@ -56,4 +58,12 @@ export interface ICategory {
   _updatedAt: string
   image: IImage
   name: string
+}
+
+export interface IGroupBasketItems {
+  id: string
+  name: string
+  description: string
+  price: number
+  image: IImage
 }
