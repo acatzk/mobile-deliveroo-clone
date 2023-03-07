@@ -27,7 +27,7 @@ const BasketIcon: FC<Props> = (): JSX.Element => {
     <View className="absolute bottom-10 z-50 w-full">
       <TouchableOpacity
         onPress={handleNavigateToBasket}
-        className="mx-5 flex-row items-center space-x-1 rounded-lg bg-[#00CCBB] p-4"
+        className="mx-5 flex-row items-center space-x-1 rounded-lg bg-primary p-4"
       >
         <Text className="bg-[#01A296] py-1 px-2 text-lg font-extrabold text-white">
           {items.length}
