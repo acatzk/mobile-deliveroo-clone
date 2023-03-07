@@ -15,4 +15,6 @@ export type RootStackParamList = {
     lat: number
   }
   Basket: undefined
+  PreparingOrder: undefined
+  Delivery: undefined
 }

@@ -43,6 +43,10 @@ const BasketScreen: FC<Props> = (): JSX.Element => {
     navigation.goBack()
   }
 
+  const handlePreparingOrder = (): void => {
+    navigation.navigate('PreparingOrder')
+  }
+
   return (
     <SafeAreaView className="flex-1 bg-white">
       <View className="flex-1 bg-gray-100">
@@ -73,7 +77,7 @@ const BasketScreen: FC<Props> = (): JSX.Element => {
           {/* eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion */}
           {Object.entries(groupItemsInBasket).map(([key, items]) => (
             <View key={key} className="flex-row items-center space-x-3 bg-white py-2 px-5">
-              <Text className="text-[#00CCBB]">{items?.length} x</Text>
+              <Text className="text-primary">{items?.length} x</Text>
               <Image
                 source={{
                   uri: urlFor(items[0]?.image).url()
@@ -88,7 +92,7 @@ const BasketScreen: FC<Props> = (): JSX.Element => {
 
               <TouchableOpacity>
                 <Text
-                  className="text-xs text-[#00CCBB]"
+                  className="text-xs text-primary"
                   onPress={() => dispatch(removeFromBasket({ id: key }))}
                 >
                   Remove
@@ -121,7 +125,7 @@ const BasketScreen: FC<Props> = (): JSX.Element => {
           </Text>
         </View>
 
-        <TouchableOpacity className="rounded-lg bg-[#00CCBB] p-4">
+        <TouchableOpacity onPress={handlePreparingOrder} className="rounded-lg bg-primary p-4">
           <Text className="text-center font-bold text-white">Place Order</Text>
         </TouchableOpacity>
       </View>
