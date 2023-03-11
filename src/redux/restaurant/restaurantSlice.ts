@@ -12,6 +12,8 @@ export interface RestaurantState {
     address: string | null
     short_description: string | null
     dishes: string | null
+    lat: number | null
+    long: number | null
   }
 }
 
@@ -24,6 +26,8 @@ export interface IRestaurantItem {
   address: string | null
   short_description: string | null
   dishes: string | null
+  lat: number | null
+  long: number | null
 }
 
 const initialState: RestaurantState = {
@@ -35,7 +39,9 @@ const initialState: RestaurantState = {
     genre: '',
     address: '',
     short_description: '',
-    dishes: ''
+    dishes: '',
+    lat: null,
+    long: null
   }
 }
 
